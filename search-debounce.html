@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debounced Search App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background: #f9f9f9;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+    li {
+      padding: 10px;
+      background: #fff;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Search Users</h2>
+  <input type="text" id="searchInput" placeholder="Type to search..." />
+  <ul id="resultList"></ul>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const resultList = document.getElementById('resultList');
+
+    let timeoutId;
+
+    function debounceSearch(callback, delay) {
+      return function(...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => callback.apply(this, args), delay);
+      };
+    }
+
+    function fetchUsers(query) {
+      if (query === '') {
+        resultList.innerHTML = '';
+        return;
+      }
+
+      fetch('https://jsonplaceholder.typicode.com/users')
+        .then(res => res.json())
+        .then(users => {
+          const filtered = users.filter(user =>
+            user.name.toLowerCase().includes(query.toLowerCase())
+          );
+
+          resultList.innerHTML = '';
+          filtered.forEach(user => {
+            const li = document.createElement('li');
+            li.textContent = `${user.name} - ${user.email}`;
+            resultList.appendChild(li);
+          });
+        });
+    }
+
+    const debouncedSearch = debounceSearch((e) => {
+      fetchUsers(e.target.value);
+    }, 100);
+
+    searchInput.addEventListener('input', debouncedSearch);
+  </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive To-Do App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f0f2f5;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: 70%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin-left: 10px;
+      border: none;
+      background-color: #28a745;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    li {
+      background: #e9ecef;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .actions button {
+      margin-left: 5px;
+      background-color: #007bff;
+    }
+
+    .actions button.delete {
+      background-color: #dc3545;
+    }
+
+    .actions button:hover {
+      opacity: 0.8;
+    }
+
+    @media (max-width: 600px) {
+      input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      button {
+        width: 100%;
+        margin: 5px 0;
+      }
+
+      .actions {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>To-Do List</h2>
+    <input type="text" id="todoInput" placeholder="Enter a task..." />
+    <button onclick="addTodo()">Add</button>
+    <ul id="todoList"></ul>
+  </div>
+
+  <script>
+    function addTodo() {
+      const input = document.getElementById('todoInput');
+      const value = input.value.trim();
+      if (value === '') return;
+
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <span class="task">${value}</span>
+        <span class="actions">
+          <button onclick="editTodo(this)">Edit</button>
+          <button class="delete" onclick="removeTodo(this)">Delete</button>
+        </span>
+      `;
+
+      document.getElementById('todoList').appendChild(li);
+      input.value = '';
+    }
+
+    function removeTodo(button) {
+      const li = button.parentElement.parentElement;
+      li.remove();
+    }
+
+    function editTodo(button) {
+      const li = button.parentElement.parentElement;
+      const taskSpan = li.querySelector('.task');
+      const currentText = taskSpan.textContent;
+      const newText = prompt('Edit your task:', currentText);
+      if (newText !== null && newText.trim() !== '') {
+        taskSpan.textContent = newText.trim();
+      }
+    }
+  </script>
+</body>
+</html>

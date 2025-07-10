@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>Page Title</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+    </head>
+    <body>
+        <h4>Sending data to API and fetching it back</h4>
+        <button id="send">Send POST</button>
+        <ul id="list"></ul>
+        <script>
+            document.getElementById("send").addEventListener("click", function () {
+                const newPost = [
+                    {
+                        title: "iPhone se",
+                        description: "The iPhone SE features an aluminum frame, paired with a glass front and back. It shares the same physical sizes and dimensions as the iPhone 8 and is externally identical, except for a centered Apple logo and the removal of the iPhone branding in the lower midsection.",
+                        price: 109.95
+                    },
+                    {
+                        title: "iPhone 15",
+                        description: "The iPhone SE features an aluminum frame, paired with a glass front and back. It shares the same physical sizes and dimensions as the iPhone 8 and is externally identical, except for a centered Apple logo and the removal of the iPhone branding in the lower midsection.",
+                        price: 109.95
+                    },
+                    {
+                        title: "iPhone 16",
+                        description: "The iPhone SE features an aluminum frame, paired with a glass front and back. It shares the same physical sizes and dimensions as the iPhone 8 and is externally identical, except for a centered Apple logo and the removal of the iPhone branding in the lower midsection.",
+                        price: 109.95
+                    }
+                ]
+                newPost.forEach(post => {
+                    fetch("https://jsonplaceholder.typicode.com/posts", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(post)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("POST response:", data);
+                        const ul = document.getElementById("list")
+                        const li = document.createElement("li")
+                        
+                        let details  = ''
+                        for(let key in data){
+                            details += `<strong>${key}: </strong>${data[key]} <br>`
+                        }
+                        li.innerHTML = details
+                        ul.appendChild(li)
+                    })
+                    .catch(error => console.log("Fetch error:", error));
+                })
+            });
+        </script>
+    </body>
+</html>

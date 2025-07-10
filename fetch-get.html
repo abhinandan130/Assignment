@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="list"></ul>
+
+    <!-- <h1>Fetch JSON Example</h1>
+    <pre id="output"></pre> -->
+
+    <script>
+        fetch("data.json")
+        .then(response => response.json())
+        .then(data => {
+            const ul = document.getElementById("list")
+
+            data.forEach(item => {
+                const li = document.createElement("li")
+
+                let details  = ''
+                for(let key in item){
+                    details += `<strong>${key}: </strong>${item[key]} <br>`
+                }
+
+                li.innerHTML = details
+                ul.appendChild(li)
+            })
+        })
+        .catch(error => console.log("Fetched Error, ", error))
+
+
+
+        // fetch("data.json")
+        // .then(response => response.json())
+        // .then(data => {
+        //     console.log(data);
+        //     document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+        // })
+        // .catch(error => console.error("Error:", error));
+    </script>
+</body>
+</html>

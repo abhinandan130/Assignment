@@ -16,7 +16,7 @@ function minAndMax(a1) {
     return `The minimum is ${min} and maximum is ${max}`
 }
 
-console.log(minAndMax(a1))
+console.log("\n", minAndMax(a1))
 
 // ============================================================
 
@@ -50,7 +50,7 @@ function secondMinAndMax(a2) {
     return `The second minimum is ${secondMin} and second maximum is ${secondMax}`
 }
 
-console.log(secondMinAndMax(a2))
+console.log("\n",secondMinAndMax(a2))
 
 // ============================================================
 
@@ -67,10 +67,10 @@ function sorting(a3) {
             }
         }
     }
-    return a3
+    return `The sorted array is ${a3}`
 }
 
-console.log(sorting(a3))
+console.log("\n",sorting(a3))
 
 // ============================================================
 
@@ -94,10 +94,10 @@ function removeDuplicates(a4) {
             out.push(a4[i])
         }
     }
-    return out
+    return `Array after removing duplicates => ${out}`
 }
 
-console.log(removeDuplicates(a4))
+console.log("\n",removeDuplicates(a4))
 
 // ============================================================
 
@@ -121,10 +121,10 @@ function removeDuplicates(a5) {
             out += a5[i]
         }
     }
-    return out
+    return `String after removing duplicates => ${out}`
 }
 
-console.log(removeDuplicates(a5))
+console.log("\n",removeDuplicates(a5))
 
 // ============================================================
 
@@ -135,7 +135,7 @@ function camelToSnake (a6) {
     let out = ''
 
     for (let i = 0; i < a6.length; i++) {
-        let lower = String.fromCharCode(a[i].charCodeAt(0) + 32)
+        let lower = String.fromCharCode(a6[i].charCodeAt(0) + 32)
 
         if(a6[i] >= 'A' && a6[i] <= 'Z') {
             out += '_' + lower
@@ -144,10 +144,10 @@ function camelToSnake (a6) {
         }
     }
 
-    return out
+    return `Camel case converted to snake case => ${out}`
 }
 
-console.log(camelToSnake(a6))
+console.log("\n",camelToSnake(a6))
 
 // ============================================================
 
@@ -169,10 +169,10 @@ function snakeToCamel (a7) {
             out += a7[i]
         }
     }
-    return out
+    return `Snake case converted to camel case => ${out}`
 }
 
-console.log(snakeToCamel(a7))
+console.log("\n",snakeToCamel(a7))
 
 // ============================================================
 
@@ -198,7 +198,7 @@ function flatten (a8) {
     return out
 }
 
-console.log(flatten(a8))
+console.log("\n",flatten(a8))
 
 // ============================================================
 
@@ -239,10 +239,10 @@ function secondLargest (a9) {
         }
     }
 
-    return `The second largest number is ${secondMax}`
+    return `Second largest number in a nested array => ${secondMax}`
 }
 
-console.log(secondLargest(a9))
+console.log("\n",secondLargest(a9), "\n")
 
 // ============================================================
 
@@ -289,7 +289,7 @@ function patternPrinting(n) {
         console.log(line.trim());
     }
 }
-patternPrinting(5);
+patternPrinting(5)
 
 
 // ============================================================
@@ -306,9 +306,9 @@ function addZero(a11) {
             out.push(0)
         }
     }
-    return out
+    return `Array after adding zero after every 3 elements => ${out}`
 }
-console.log(addZero(a11))
+console.log("\n",addZero(a11))
 
 // ============================================================
 
@@ -322,10 +322,10 @@ function reversed(a12) {
         out += a12[i]
     }
 
-    return out
+    return `Reversed string => ${out}`
 }
 
-console.log(reversed(a12))
+console.log("\n",reversed(a12))
 
 // ============================================================
 
@@ -345,7 +345,7 @@ function fibonacci(a13) {
     }
 }
 
-fibonacci(a13)
+fibonacci("\n",a13)
 // --------------------
 
 function fibonacci(a13) {
@@ -364,9 +364,9 @@ function fibonacci(a13) {
         fib2 = fib3;
     }
 
-    return result;
+    return `Fibonacci series => ${result}`;
 }
-console.log(fibonacci(a13))
+console.log("\n",fibonacci(a13), "\n")
 
 // ============================================================
 
@@ -442,7 +442,7 @@ function repeated(a15) {
     }
     return out
 }
-console.log(repeated(a15))
+console.log("\n",repeated(a15))
 
 // ============================================================
 
@@ -454,19 +454,19 @@ function capitalize (a16) {
 
     for(let i = 0; i < a16.length; i++){
         let str = a16[i]
-        let first = str[str.length-1]
+        let first = str[0]
         let capital = String.fromCharCode(first.charCodeAt(0) - 32)
         let rest = ''
 
-        for (let j = 0; j < str.length-1; j++){
+        for (let j = 1; j < str.length; j++){
             rest += str[j]
         }
-        out.push(rest + capital)
+        out.push(capital + rest)
     }
-    return out
+    return `Array of strings after converting the first letter of string to capital => ${out}`
 }
 
-console.log(capitalize(a16))
+console.log("\n",capitalize(a16))
 
 // ============================================================
 
@@ -484,10 +484,10 @@ function totalMarks(students) {
         sum += students[i].marks;  // accesses the marks from each object
     }
 
-    return sum;
+    return `Sum of total marks in an array of object => ${sum}`;
 }
 
-console.log(totalMarks(students))
+console.log("\n",totalMarks(students))
 
 // ============================================================
 
@@ -516,6 +516,6 @@ function removeDuplicatesFromBoth(a, b) {
             unique.push(merged[i])
         }
     }
-    return unique
+    return `Final array after removing duplicates from both array => ${unique}`
 }
-console.log(removeDuplicatesFromBoth(a, b))
+console.log("\n", removeDuplicatesFromBoth(a, b), "\n")
